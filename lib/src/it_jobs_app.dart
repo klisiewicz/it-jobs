@@ -8,6 +8,7 @@ class ItJobsApp extends StatelessWidget {
       title: 'IT Jobs',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
+        accentColor: Colors.pink
       ),
       home: JobsPage(),
     );
