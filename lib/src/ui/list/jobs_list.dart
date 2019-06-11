@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:it_jobs/src/domain/job.dart';
 
-import 'job_list_item.dart';
+import 'package:it_jobs/src/ui/list/job_list_item.dart';
 
 typedef void JobSelection(Job job);
 

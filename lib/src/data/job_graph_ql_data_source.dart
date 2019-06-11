@@ -11,13 +11,13 @@ class JobGraphQLDataSource extends JobDataSource {
 
   @override
   Future<Iterable<Job>> getAll() async {
-    final WatchQueryOptions _options = WatchQueryOptions(
+    final WatchQueryOptions options = WatchQueryOptions(
       document: _getAllJobs,
       pollInterval: 10,
       fetchResults: true,
     );
 
-    final QueryResult result = await _client.query(_options);
+    final QueryResult result = await _client.query(options);
     final List<dynamic> jobs = result.data['jobs'];
     return jobs.map((json) => Job.fromJson(json));
   }

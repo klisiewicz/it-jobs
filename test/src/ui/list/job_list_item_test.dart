@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:it_jobs/src/ui/job_list_item.dart';
+import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/ui/list/job_list_item.dart';
 
-import '../data/job_test_data.dart';
-import 'ui_test_util.dart';
+import '../../data/job_test_data.dart';
+import '../ui_test_util.dart';
 
 void main() {
   testWidgets(
     'should display job title, company name',
     (WidgetTester tester) async {
       // Given:
-      await tester.pumpWidget(makeTestableWidget(
-        child: JobListItem(job: androidDeveloper),
-      ));
+      await _makeTestableJobList(tester, androidDeveloper);
 
       // Then:
       expect(find.text(androidDeveloper.title), findsOneWidget);
@@ -26,12 +25,11 @@ void main() {
       bool wasJobSelected = false;
 
       // Given:
-      await tester.pumpWidget(makeTestableWidget(
-        child: JobListItem(
-          job: androidDeveloper,
-          onJobSelected: () => wasJobSelected = true,
-        ),
-      ));
+      await _makeTestableJobList(
+        tester,
+        androidDeveloper,
+        onJobSelected: () => wasJobSelected = true,
+      );
       expect(wasJobSelected, isFalse);
 
       // When:
@@ -40,5 +38,20 @@ void main() {
       // Then:
       expect(wasJobSelected, isTrue);
     },
+  );
+}
+
+Future<void> _makeTestableJobList(
+  WidgetTester tester,
+  Job job, {
+  VoidCallback onJobSelected,
+}) async {
+  return tester.pumpWidget(
+    makeTestableWidget(
+      child: JobListItem(
+        job: job,
+        onJobSelected: onJobSelected,
+      ),
+    ),
   );
 }

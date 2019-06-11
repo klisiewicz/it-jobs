@@ -21,10 +21,23 @@ main() {
   givenRepositoryReturningJobs() => when(jobRepository.findAll())
       .thenAnswer((_) async => [androidDeveloper, javaDeveloper]);
 
+  givenRepositoryReturningDifferentJobsEachCall() {
+    var firstCall = true;
+    when(jobRepository.findAll()).thenAnswer((_) async {
+      if (firstCall) {
+        firstCall = false;
+        return [androidDeveloper];
+      } else
+        return [androidDeveloper, javaDeveloper];
+    });
+  }
+
   givenRepositoryReturningError() =>
       when(jobRepository.findAll()).thenThrow(_jobsLoadingException);
 
   whenFetchingJobs() => jobsBloc.dispatch(GetAllJobs());
+
+  whenRefreshingJobs() => jobsBloc.dispatch(RefreshJobs());
 
   thenExpectStates(Iterable<JobsState> states) {
     expectLater(
@@ -59,6 +72,14 @@ main() {
     ]);
 
     whenFetchingJobs();
+  });
+
+  test('should ignore refresh action when no jobs were fetched before', () {
+    thenExpectStates([
+      JobsLoading(),
+    ]);
+
+    whenRefreshingJobs();
   });
 }
 

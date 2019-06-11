@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:it_jobs/src/ui/jobs_page.dart';
+import 'package:it_jobs/src/ui/list/jobs_page.dart';
 
 class ItJobsApp extends StatelessWidget {
   @override
@@ -8,7 +8,7 @@ class ItJobsApp extends StatelessWidget {
       title: 'IT Jobs',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
-        accentColor: Colors.pink
+        accentColor: Colors.pink,
       ),
       home: JobsPage(),
     );

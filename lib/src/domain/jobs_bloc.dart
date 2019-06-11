@@ -18,6 +18,8 @@ class JobsBloc extends Bloc<JobsAction, JobsState> {
   Stream<JobsState> mapEventToState(JobsAction action) async* {
     if (action is GetAllJobs) {
       yield* _getAllJobs();
+    } else if (action is RefreshJobs) {
+      yield* _refreshJobs();
     }
   }
 
@@ -27,6 +29,15 @@ class JobsBloc extends Bloc<JobsAction, JobsState> {
       yield JobsLoaded(jobs.toList());
     } catch (e) {
       yield JobsNotLoaded(e);
+    }
+  }
+
+  Stream<JobsState> _refreshJobs() async* {
+    try {
+      final Iterable<Job> jobs = await _jobRepository.findAll();
+      yield JobsLoaded(jobs.toList());
+    } catch (_) {
+      yield currentState;
     }
   }
 }

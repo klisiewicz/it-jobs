@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:it_jobs/src/domain/job.dart';
-import 'package:it_jobs/src/ui/jobs_list.dart';
+import 'package:it_jobs/src/ui/list/jobs_list.dart';
 
-import '../data/job_test_data.dart';
-import 'ui_test_util.dart';
+import '../../data/job_test_data.dart';
+import '../ui_test_util.dart';
 
 main() {
   testWidgets('should display all jobs', (WidgetTester tester) async {
