@@ -21,11 +21,18 @@ class JobsPage extends StatefulWidget {
 }
 
 class _JobsPageState extends State<JobsPage> {
-  JobsBloc jobsBloc = JobsBloc(JobRepository(JobGraphQLDataSource(GraphQLClient(
-      link: HttpLink(uri: 'https://api.graphql.jobs/') as Link,
-      cache: NormalizedInMemoryCache(
-          dataIdFromObject: typenameDataIdFromObject,
-          storageProvider: null)))));
+  JobsBloc jobsBloc = JobsBloc(
+    JobRepository(
+      JobGraphQLDataSource(
+        GraphQLClient(
+          link: HttpLink(uri: 'https://api.graphql.jobs/'),
+          cache: NormalizedInMemoryCache(
+            dataIdFromObject: typenameDataIdFromObject,
+          ),
+        ),
+      ),
+    ),
+  );
 
   Completer<void> _refreshCompleter = Completer();
 

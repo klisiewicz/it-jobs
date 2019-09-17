@@ -49,7 +49,7 @@ Future<void> _makeTestableJobList(
   return tester.pumpWidget(
     makeTestableWidget(
       child: JobListItem(
-        job: job,
+        job,
         onJobSelected: onJobSelected,
       ),
     ),

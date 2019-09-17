@@ -5,9 +5,9 @@ class JobListItem extends StatelessWidget {
   final Job job;
   final VoidCallback onJobSelected;
 
-  const JobListItem({
+  const JobListItem(
+    this.job, {
     Key key,
-    @required this.job,
     this.onJobSelected,
   })  : assert(job != null),
         super(key: key);

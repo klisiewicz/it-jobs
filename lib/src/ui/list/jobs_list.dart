@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:it_jobs/src/domain/job.dart';
-
 import 'package:it_jobs/src/ui/list/job_list_item.dart';
 
 typedef void JobSelection(Job job);
@@ -21,8 +20,8 @@ class JobsList extends StatelessWidget {
       itemBuilder: (context, index) {
         final Job job = jobs[index];
         return JobListItem(
+          job,
           key: Key(job.slug),
-          job: job,
           onJobSelected: () => onJobSelected.call(job),
         );
       },
