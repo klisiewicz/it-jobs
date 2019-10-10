@@ -15,10 +15,13 @@ class Job extends Equatable {
     @required this.slug,
     @required this.title,
     @required this.company,
-  }) : super([slug, title, company]);
+  });
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 
   @visibleForTesting
   Map<String, dynamic> toJson() => _$JobToJson(this);
+
+  @override
+  List<Object> get props => [slug, title, company];
 }

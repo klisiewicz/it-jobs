@@ -12,11 +12,13 @@ class Company extends Equatable {
   Company({
     @required this.slug,
     @required this.name,
-  }) : super([slug, name]);
+  });
 
   factory Company.fromJson(Map<String, dynamic> json) =>
       _$CompanyFromJson(json);
 
-  @visibleForTesting
   Map<String, dynamic> toJson() => _$CompanyToJson(this);
+
+  @override
+  List<Object> get props => [slug, name];
 }
