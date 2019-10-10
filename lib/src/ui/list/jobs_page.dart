@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_patterns/base_list.dart';
 import 'package:graphql/client.dart';
 import 'package:it_jobs/src/data/job_graph_ql_data_source.dart';
+import 'package:it_jobs/src/domain/job.dart';
 import 'package:it_jobs/src/domain/job_repository.dart';
-import 'package:it_jobs/src/domain/jobs_actions.dart';
 import 'package:it_jobs/src/domain/jobs_bloc.dart';
-import 'package:it_jobs/src/domain/jobs_states.dart';
 import 'package:it_jobs/src/ui/common/error_page.dart';
 import 'package:it_jobs/src/ui/common/loading_indicator.dart';
 import 'package:it_jobs/src/ui/keys.dart';
@@ -34,53 +31,31 @@ class _JobsPageState extends State<JobsPage> {
     ),
   );
 
-  Completer<void> _refreshCompleter = Completer();
-
   @override
   void initState() {
     super.initState();
-
-    _fetchAllJobs();
+    jobsBloc.loadElements();
   }
-
-  void _fetchAllJobs() => jobsBloc.dispatch(GetAllJobs());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('IT Jobs')),
-      body: BlocBuilder(
+      body: ViewStateBuilder(
         bloc: jobsBloc,
-        builder: _buildJobsContent,
+        onLoading: (context) => LoadingIndicator(),
+        onSuccess: (context, jobs) => _buildJobsList(jobs),
+        onRefreshing: (context, jobs) => _buildJobsList(jobs),
+        onError: (context, error) => ErrorPage(onRetry: jobsBloc.loadElements),
       ),
     );
   }
 
-  Widget _buildJobsContent(BuildContext context, JobsState state) {
-    if (state is JobsLoading) {
-      return LoadingIndicator();
-    } else if (state is JobsLoaded) {
-      return _buildJobsList(state);
-    } else if (state is JobsNotLoaded) {
-      return ErrorPage(onRetry: _fetchAllJobs);
-    } else {
-      return Container();
-    }
-  }
-
-  Widget _buildJobsList(JobsLoaded state) {
-    _refreshCompleter?.complete();
-    _refreshCompleter = Completer();
-
-    return RefreshIndicator(
-      child: JobsList(jobs: state.jobs),
-      onRefresh: _refreshJobs,
+  Widget _buildJobsList(List<Job> jobs) {
+    return RefreshView(
+      onRefresh: jobsBloc.refreshElements,
+      child: JobsList(jobs: jobs),
     );
-  }
-
-  Future<void> _refreshJobs() {
-    jobsBloc.dispatch(RefreshJobs());
-    return _refreshCompleter.future;
   }
 
   @override
