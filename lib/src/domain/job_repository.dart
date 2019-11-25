@@ -2,7 +2,7 @@ import 'package:flutter_bloc_patterns/base_list.dart';
 import 'package:it_jobs/src/domain/job.dart';
 import 'package:it_jobs/src/domain/job_data_source.dart';
 
-class JobRepository implements Repository<Job> {
+class JobRepository implements ListRepository<Job> {
   final JobDataSource _jobDataSource;
 
   JobRepository(JobDataSource jobDataSource)

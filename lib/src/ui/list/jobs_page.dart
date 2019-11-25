@@ -61,6 +61,6 @@ class _JobsPageState extends State<JobsPage> {
   @override
   void dispose() {
     super.dispose();
-    jobsBloc.dispose();
+    jobsBloc.close();
   }
 }
