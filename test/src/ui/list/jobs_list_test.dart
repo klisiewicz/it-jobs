@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/ui/list/jobs_list.dart';
 
 import '../../data/job_test_data.dart';
@@ -14,8 +14,8 @@ main() {
     ));
 
     // Then:
-    expectLater(find.byKey(Key(androidDeveloper.slug)), findsOneWidget);
-    expectLater(find.byKey(Key(javaDeveloper.slug)), findsOneWidget);
+    await expectLater(find.byKey(Key(androidDeveloper.slug)), findsOneWidget);
+    await expectLater(find.byKey(Key(javaDeveloper.slug)), findsOneWidget);
   });
 
   testWidgets('should select job', (WidgetTester tester) async {

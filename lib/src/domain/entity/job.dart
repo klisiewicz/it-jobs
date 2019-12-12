@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:it_jobs/src/domain/company.dart';
+import 'package:it_jobs/src/domain/entity/company.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 

@@ -1,5 +1,5 @@
-import 'package:it_jobs/src/domain/company.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/company.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 
 final androidDeveloper = Job(
   slug: 'android',

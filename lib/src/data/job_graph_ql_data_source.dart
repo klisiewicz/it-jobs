@@ -1,5 +1,5 @@
 import 'package:graphql/client.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/domain/job_data_source.dart';
 
 class JobGraphQLDataSource extends JobDataSource {

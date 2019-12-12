@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/ui/list/job_list_item.dart';
 
 import '../../data/job_test_data.dart';

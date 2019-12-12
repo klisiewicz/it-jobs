@@ -1,5 +1,5 @@
 import 'package:flutter_bloc_patterns/base_list.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/domain/job_data_source.dart';
 
 class JobRepository implements ListRepository<Job> {
@@ -10,8 +10,7 @@ class JobRepository implements ListRepository<Job> {
         assert(jobDataSource != null);
 
   @override
-  Future<List<Job>> getAll() async {
-    final Iterable<Job> jobs = await _jobDataSource.getAll();
-    return jobs;
+  Future<List<Job>> getAll() {
+    return _jobDataSource.getAll();
   }
 }

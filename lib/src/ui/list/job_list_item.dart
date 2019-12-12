@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:it_jobs/src/domain/job.dart';
+import 'package:it_jobs/src/domain/entity/job.dart';
 
 class JobListItem extends StatelessWidget {
   final Job job;
