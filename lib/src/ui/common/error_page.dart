@@ -11,27 +11,25 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Icon(Icons.error, size: 64, color: Theme.of(context).errorColor),
-            SizedBox(height: 16),
-            Text(
-              'Ooops something went wrong...',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.title,
-            ),
-            SizedBox(height: 16),
-            FlatButton(
-              key: Keys.refreshButton,
-              child: Text('Try Again'),
-              onPressed: onRetry,
-            )
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Icon(Icons.error, size: 64, color: Theme.of(context).errorColor),
+          const SizedBox(height: 16),
+          Text(
+            'Ooops something went wrong...',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          const SizedBox(height: 16),
+          FlatButton(
+            key: Keys.refreshButton,
+            onPressed: onRetry,
+            child: const Text('Try Again'),
+          )
+        ],
       ),
     );
   }

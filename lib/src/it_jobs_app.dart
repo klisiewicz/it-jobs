@@ -10,7 +10,7 @@ class ItJobsApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         accentColor: Colors.pink,
       ),
-      home: JobsPage(),
+      home: const JobsPage(),
     );
   }
 }

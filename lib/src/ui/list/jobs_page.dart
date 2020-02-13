@@ -9,7 +9,7 @@ import 'package:it_jobs/src/ui/keys.dart';
 import 'package:it_jobs/src/ui/list/jobs_list.dart';
 
 class JobsPage extends StatefulWidget {
-  JobsPage({Key key}) : super(key: Keys.jobsPage);
+  const JobsPage() : super(key: Keys.jobsPage);
 
   @override
   _JobsPageState createState() => _JobsPageState();
@@ -27,10 +27,13 @@ class _JobsPageState extends State<JobsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('IT Jobs')),
-      body: ViewStateBuilder(
+      appBar: AppBar(
+        title: const Text('IT Jobs'),
+        elevation: 0,
+      ),
+      body: ViewStateBuilder<List<Job>, JobsBloc>(
         bloc: jobsBloc,
-        onLoading: (context) => LoadingIndicator(),
+        onLoading: (context) => const LoadingIndicator(),
         onSuccess: (context, jobs) => _buildJobsList(jobs),
         onRefreshing: (context, jobs) => _buildJobsList(jobs),
         onError: (context, error) => ErrorPage(onRetry: jobsBloc.loadElements),

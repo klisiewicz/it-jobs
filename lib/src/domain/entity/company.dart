@@ -9,7 +9,7 @@ class Company extends Equatable {
   final String slug;
   final String name;
 
-  Company({
+  const Company({
     @required this.slug,
     @required this.name,
   });

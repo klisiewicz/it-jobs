@@ -8,7 +8,7 @@ import 'job_test_data.dart';
 
 class _GraphQLClientMock extends Mock implements GraphQLClient {}
 
-main() {
+void main() {
   JobGraphQLDataSource jobGraphQlDataSource;
   GraphQLClient client;
 
@@ -20,13 +20,13 @@ main() {
   test('should return jobs from the client', () async {
     when(client.query(any)).thenAnswer(
       (_) async => QueryResult(
-            data: {
-              'jobs': [
-                androidDeveloper.toJson(),
-                javaDeveloper.toJson(),
-              ],
-            },
-          ),
+        data: {
+          'jobs': [
+            androidDeveloper.toJson(),
+            javaDeveloper.toJson(),
+          ],
+        },
+      ),
     );
 
     final List<Job> jobs = (await jobGraphQlDataSource.getAll()).toList();

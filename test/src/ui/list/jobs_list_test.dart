@@ -6,7 +6,7 @@ import 'package:it_jobs/src/ui/list/jobs_list.dart';
 import '../../data/job_test_data.dart';
 import '../ui_test_util.dart';
 
-main() {
+void main() {
   testWidgets('should display all jobs', (WidgetTester tester) async {
     // Given:
     await tester.pumpWidget(makeTestableWidget(
@@ -22,8 +22,10 @@ main() {
     // Given:
     Job selectedJob;
     await tester.pumpWidget(makeTestableWidget(
-      child: JobsList(jobs: [androidDeveloper, javaDeveloper],
-        onJobSelected: (job) => selectedJob = job,),
+      child: JobsList(
+        jobs: [androidDeveloper, javaDeveloper],
+        onJobSelected: (job) => selectedJob = job,
+      ),
     ));
 
     // When:

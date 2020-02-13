@@ -4,10 +4,12 @@ import 'package:it_jobs/src/ui/common/loading_indicator.dart';
 
 import '../ui_test_util.dart';
 
-main() {
+void main() {
   testWidgets('should display loading indicator', (WidgetTester tester) async {
     // Given:
-    await tester.pumpWidget(makeTestableWidget(child: LoadingIndicator()));
+    await tester.pumpWidget(
+      makeTestableWidget(child: const LoadingIndicator()),
+    );
 
     // Then:
     expect(find.byType(LinearProgressIndicator), findsOneWidget);

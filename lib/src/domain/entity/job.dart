@@ -11,7 +11,7 @@ class Job extends Equatable {
   final String title;
   final Company company;
 
-  Job({
+  const Job({
     @required this.slug,
     @required this.title,
     @required this.company,

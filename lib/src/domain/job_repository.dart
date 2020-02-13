@@ -6,7 +6,7 @@ class JobRepository implements ListRepository<Job> {
   final JobDataSource _jobDataSource;
 
   JobRepository(JobDataSource jobDataSource)
-      : this._jobDataSource = jobDataSource,
+      : _jobDataSource = jobDataSource,
         assert(jobDataSource != null);
 
   @override

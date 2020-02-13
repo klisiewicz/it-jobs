@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/ui/list/job_list_item.dart';
 
-typedef void JobSelection(Job job);
+typedef JobSelection = void Function(Job job);
 
 class JobsList extends StatelessWidget {
   final List<Job> jobs;
@@ -25,7 +25,7 @@ class JobsList extends StatelessWidget {
           onJobSelected: () => onJobSelected.call(job),
         );
       },
-      separatorBuilder: (context, index) => Divider(height: 1),
+      separatorBuilder: (context, index) => const Divider(height: 1),
       itemCount: jobs.length,
     );
   }
