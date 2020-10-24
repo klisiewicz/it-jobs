@@ -3,7 +3,7 @@ import 'package:graphql/client.dart';
 import 'package:it_jobs/src/data/job_graph_ql_data_source.dart';
 import 'package:it_jobs/src/domain/job_data_source.dart';
 import 'package:it_jobs/src/domain/job_repository.dart';
-import 'package:it_jobs/src/domain/jobs_bloc.dart';
+import 'package:it_jobs/src/view/bloc/jobs_bloc.dart';
 
 void injectDependencies() {
   final locator = GetIt.instance;

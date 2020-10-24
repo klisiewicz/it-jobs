@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:it_jobs/src/ui/keys.dart';
+import 'package:it_jobs/src/view/ui/keys.dart';
 
 class ErrorPage extends StatelessWidget {
   final VoidCallback onRetry;
@@ -14,7 +14,6 @@ class ErrorPage extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Icon(Icons.error, size: 64, color: Theme.of(context).errorColor),
           const SizedBox(height: 16),

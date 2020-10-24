@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:it_jobs/src/domain/entity/job.dart';
-import 'package:it_jobs/src/ui/list/jobs_list.dart';
+import 'package:it_jobs/src/view/ui/list/jobs_list.dart';
 
-import '../../data/job_test_data.dart';
+import '../../../data/job_test_data.dart';
 import '../ui_test_util.dart';
 
 void main() {
   testWidgets('should display all jobs', (WidgetTester tester) async {
     // Given:
     await tester.pumpWidget(makeTestableWidget(
-      child: JobsList(jobs: [androidDeveloper, javaDeveloper]),
+      child: const JobsList(jobs: [androidDeveloper, javaDeveloper]),
     ));
 
     // Then:
@@ -23,7 +23,7 @@ void main() {
     Job selectedJob;
     await tester.pumpWidget(makeTestableWidget(
       child: JobsList(
-        jobs: [androidDeveloper, javaDeveloper],
+        jobs: const [androidDeveloper, javaDeveloper],
         onJobSelected: (job) => selectedJob = job,
       ),
     ));

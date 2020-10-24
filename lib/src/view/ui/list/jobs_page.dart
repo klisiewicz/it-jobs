@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_patterns/view.dart';
 import 'package:it_jobs/src/di/injector.dart';
 import 'package:it_jobs/src/domain/entity/job.dart';
-import 'package:it_jobs/src/domain/jobs_bloc.dart';
-import 'package:it_jobs/src/ui/common/error_page.dart';
-import 'package:it_jobs/src/ui/common/loading_indicator.dart';
-import 'package:it_jobs/src/ui/keys.dart';
-import 'package:it_jobs/src/ui/list/jobs_list.dart';
+import 'package:it_jobs/src/view/bloc/jobs_bloc.dart';
+import 'package:it_jobs/src/view/ui/common/error_page.dart';
+import 'package:it_jobs/src/view/ui/common/loading_indicator.dart';
+import 'package:it_jobs/src/view/ui/keys.dart';
+import 'package:it_jobs/src/view/ui/list/jobs_list.dart';
 
 class JobsPage extends StatefulWidget {
   const JobsPage() : super(key: Keys.jobsPage);
