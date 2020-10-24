@@ -22,4 +22,4 @@ void injectDependencies() {
   locator.registerFactory(() => JobsBloc(locator.get()));
 }
 
-T inject<T>([String name]) => GetIt.instance.get<T>(name);
+T inject<T>([String name]) => GetIt.instance.get<T>(instanceName: name);
