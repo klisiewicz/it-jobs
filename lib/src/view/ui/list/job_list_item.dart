@@ -9,7 +9,7 @@ class JobListItem extends StatelessWidget {
     this.job, {
     Key? key,
     this.onJobSelected,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

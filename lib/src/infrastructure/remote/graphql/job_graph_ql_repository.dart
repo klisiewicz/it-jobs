@@ -6,8 +6,7 @@ import 'package:it_jobs/src/domain/job_repository.dart';
 class JobGraphQLRepository extends JobRepository {
   final GraphQLClient _client;
 
-  JobGraphQLRepository(GraphQLClient client)
-      : _client = client;
+  JobGraphQLRepository(GraphQLClient client) : _client = client;
 
   @override
   Future<List<Job>> getAll() async {
