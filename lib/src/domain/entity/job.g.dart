@@ -13,9 +13,3 @@ Job _$JobFromJson(Map<String, dynamic> json) => Job(
           ? null
           : Company.fromJson(json['company'] as Map<String, dynamic>),
     );
-
-Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
-      'slug': instance.slug,
-      'title': instance.title,
-      'company': instance.company,
-    };

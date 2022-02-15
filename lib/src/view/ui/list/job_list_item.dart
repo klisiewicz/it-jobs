@@ -14,8 +14,9 @@ class JobListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(job.title!),
-      subtitle: Text(job.company!.name!),
+      key: ValueKey(job.slug),
+      title: Text(job.title ?? ''),
+      subtitle: Text(job.company?.name ?? ''),
       onTap: onJobSelected,
     );
   }

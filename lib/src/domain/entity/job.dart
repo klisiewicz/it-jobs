@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 
 part 'job.g.dart';
 
+@immutable
 @JsonSerializable()
 class Job extends Equatable {
   final String? slug;
@@ -18,9 +19,6 @@ class Job extends Equatable {
   });
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
-
-  @visibleForTesting
-  Map<String, dynamic> toJson() => _$JobToJson(this);
 
   @override
   List<Object?> get props => [slug, title, company];

@@ -33,7 +33,7 @@ void main() {
       expect(wasJobSelected, isFalse);
 
       // When:
-      await tester.tap(find.byType(InkWell));
+      await tester.tap(find.byKey(ValueKey(androidDeveloper.slug)));
 
       // Then:
       expect(wasJobSelected, isTrue);
