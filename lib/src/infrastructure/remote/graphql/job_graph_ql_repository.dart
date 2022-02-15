@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graphql/client.dart';
 import 'package:it_jobs/src/domain/entity/job.dart';
-import 'package:it_jobs/src/domain/job_data_source.dart';
+import 'package:it_jobs/src/domain/job_repository.dart';
 
-class JobGraphQLDataSource extends JobDataSource {
+class JobGraphQLRepository extends JobRepository {
   final GraphQLClient _client;
 
-  JobGraphQLDataSource(GraphQLClient client)
+  JobGraphQLRepository(GraphQLClient client)
       : _client = client;
 
   @override

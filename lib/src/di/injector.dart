@@ -1,8 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
-import 'package:it_jobs/src/data/job_graph_ql_data_source.dart';
-import 'package:it_jobs/src/domain/job_data_source.dart';
 import 'package:it_jobs/src/domain/job_repository.dart';
+import 'package:it_jobs/src/infrastructure/remote/graphql/job_graph_ql_repository.dart';
 import 'package:it_jobs/src/view/bloc/jobs_bloc.dart';
 
 void injectDependencies() {
@@ -13,10 +12,9 @@ void injectDependencies() {
       cache: GraphQLCache(),
     ),
   );
-  locator.registerFactory<JobDataSource>(
-    () => JobGraphQLDataSource(locator.get()),
+  locator.registerLazySingleton<JobRepository>(
+    () => JobGraphQLRepository(locator.get()),
   );
-  locator.registerLazySingleton(() => JobRepository(locator.get()));
   locator.registerFactory(() => JobsBloc(locator.get()));
 }
 

@@ -1,17 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql/client.dart';
-import 'package:it_jobs/src/data/job_graph_ql_data_source.dart';
+import 'package:it_jobs/src/infrastructure/remote/graphql/job_graph_ql_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'graphql_matchers.dart';
-import 'job_test_data.dart';
+import '../../../domain/entity/job_test_data.dart';
 
 class _GraphQLClientMock extends Mock implements GraphQLClient {}
 
 class QueryOptionsFake extends Fake implements QueryOptions {}
 
 void main() {
-  late JobGraphQLDataSource jobGraphQlDataSource;
+  late JobGraphQLRepository jobGraphQlDataSource;
   late GraphQLClient client;
 
   setUpAll(() {
@@ -20,12 +20,12 @@ void main() {
 
   setUp(() {
     client = _GraphQLClientMock();
-    jobGraphQlDataSource = JobGraphQLDataSource(client);
+    jobGraphQlDataSource = JobGraphQLRepository(client);
   });
 
   Future<QueryResult> executingGetJobsQuery() {
     return client.query(
-      any(that: usesQueryDocument(JobGraphQLDataSource.getAllJobs)),
+      any(that: usesQueryDocument(JobGraphQLRepository.getAllJobs)),
     );
   }
 
