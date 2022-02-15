@@ -16,7 +16,11 @@ class ErrorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.error, size: 64, color: Theme.of(context).errorColor),
+          Icon(
+            Icons.error,
+            size: 64,
+            color: Theme.of(context).errorColor,
+          ),
           const SizedBox(height: 16),
           Text(
             'Ooops something went wrong...',
@@ -24,10 +28,10 @@ class ErrorPage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           const SizedBox(height: 16),
-          FlatButton(
+          TextButton(
             key: refreshButton,
             onPressed: onRetry,
-            child: const Text('Try Again'),
+            child: const Text('TRY AGAIN'),
           )
         ],
       ),
