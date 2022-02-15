@@ -7,14 +7,14 @@ part 'job.g.dart';
 
 @JsonSerializable()
 class Job extends Equatable {
-  final String slug;
-  final String title;
-  final Company company;
+  final String? slug;
+  final String? title;
+  final Company? company;
 
   const Job({
-    @required this.slug,
-    @required this.title,
-    @required this.company,
+    required this.slug,
+    required this.title,
+    required this.company,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
@@ -23,5 +23,5 @@ class Job extends Equatable {
   Map<String, dynamic> toJson() => _$JobToJson(this);
 
   @override
-  List<Object> get props => [slug, title, company];
+  List<Object?> get props => [slug, title, company];
 }

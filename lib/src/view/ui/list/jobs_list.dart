@@ -6,10 +6,10 @@ typedef JobSelection = void Function(Job job);
 
 class JobsList extends StatelessWidget {
   final List<Job> jobs;
-  final JobSelection onJobSelected;
+  final JobSelection? onJobSelected;
 
   const JobsList({
-    Key key,
+    Key? key,
     this.jobs = const [],
     this.onJobSelected,
   }) : super(key: key);
@@ -21,8 +21,8 @@ class JobsList extends StatelessWidget {
         final Job job = jobs[index];
         return JobListItem(
           job,
-          key: Key(job.slug),
-          onJobSelected: () => onJobSelected.call(job),
+          key: Key(job.slug!),
+          onJobSelected: () => onJobSelected!.call(job),
         );
       },
       separatorBuilder: (context, index) => const Divider(height: 1),

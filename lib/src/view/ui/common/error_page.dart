@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:it_jobs/src/view/ui/keys.dart';
 
 class ErrorPage extends StatelessWidget {
-  final VoidCallback onRetry;
+  static const refreshButton = Key('__refreshButton__');
+
+  final VoidCallback? onRetry;
 
   const ErrorPage({
-    Key key,
+    Key? key,
     this.onRetry,
   }) : super(key: key);
 
@@ -24,7 +25,7 @@ class ErrorPage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           FlatButton(
-            key: Keys.refreshButton,
+            key: refreshButton,
             onPressed: onRetry,
             child: const Text('Try Again'),
           )

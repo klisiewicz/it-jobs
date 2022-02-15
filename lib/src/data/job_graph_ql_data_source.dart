@@ -7,21 +7,19 @@ class JobGraphQLDataSource extends JobDataSource {
   final GraphQLClient _client;
 
   JobGraphQLDataSource(GraphQLClient client)
-      : _client = client,
-        assert(client != null);
+      : _client = client;
 
   @override
   Future<List<Job>> getAll() async {
-    final WatchQueryOptions options = _createGetAllJobsQueryOptions();
-    final QueryResult result = await _client.query(options);
-    return result.getJobs();
+    final options = _createGetAllJobsQueryOptions();
+    final result = await _client.query(options);
+    return result.hasData ? result.getJobs() : [];
   }
 
-  static WatchQueryOptions _createGetAllJobsQueryOptions() {
-    return WatchQueryOptions(
-      documentNode: gql(getAllJobs),
-      pollInterval: 10,
-      fetchResults: true,
+  static QueryOptions _createGetAllJobsQueryOptions() {
+    return QueryOptions(
+      document: gql(getAllJobs),
+      fetchPolicy: FetchPolicy.cacheFirst,
     );
   }
 
@@ -42,8 +40,10 @@ class JobGraphQLDataSource extends JobDataSource {
 }
 
 extension on QueryResult {
+  bool get hasData => data != null;
+
   List<Job> getJobs() {
-    final dynamic jobs = data['jobs'];
+    final dynamic jobs = data!['jobs'];
     return (jobs is List)
         ? jobs
             .map((json) => Job.fromJson(json as Map<String, dynamic>))

@@ -5,11 +5,12 @@ import 'package:it_jobs/src/domain/entity/job.dart';
 import 'package:it_jobs/src/view/bloc/jobs_bloc.dart';
 import 'package:it_jobs/src/view/ui/common/error_page.dart';
 import 'package:it_jobs/src/view/ui/common/loading_indicator.dart';
-import 'package:it_jobs/src/view/ui/keys.dart';
 import 'package:it_jobs/src/view/ui/list/jobs_list.dart';
 
 class JobsPage extends StatefulWidget {
-  const JobsPage() : super(key: Keys.jobsPage);
+  static const jobsPage = Key('__jobsPage__');
+
+  const JobsPage() : super(key: jobsPage);
 
   @override
   _JobsPageState createState() => _JobsPageState();
@@ -34,17 +35,16 @@ class _JobsPageState extends State<JobsPage> {
       body: ViewStateBuilder<List<Job>, JobsBloc>(
         bloc: jobsBloc,
         onLoading: (context) => const LoadingIndicator(),
-        onSuccess: (context, jobs) => _buildJobsList(jobs),
-        onRefreshing: (context, jobs) => _buildJobsList(jobs),
+        onSuccess: (context, jobs) => RefreshView(
+          onRefresh: jobsBloc.refreshElements,
+          child: JobsList(jobs: jobs),
+        ),
+        onRefreshing: (context, jobs) => RefreshView(
+          onRefresh: jobsBloc.refreshElements,
+          child: JobsList(jobs: jobs),
+        ),
         onError: (context, error) => ErrorPage(onRetry: jobsBloc.loadElements),
       ),
-    );
-  }
-
-  Widget _buildJobsList(List<Job> jobs) {
-    return RefreshView(
-      onRefresh: jobsBloc.refreshElements,
-      child: JobsList(jobs: jobs),
     );
   }
 

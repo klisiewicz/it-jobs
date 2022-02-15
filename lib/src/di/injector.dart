@@ -9,10 +9,8 @@ void injectDependencies() {
   final locator = GetIt.instance;
   locator.registerFactory(
     () => GraphQLClient(
-      link: HttpLink(uri: 'https://api.graphql.jobs/'),
-      cache: NormalizedInMemoryCache(
-        dataIdFromObject: typenameDataIdFromObject,
-      ),
+      link: HttpLink('https://api.graphql.jobs/'),
+      cache: GraphQLCache(),
     ),
   );
   locator.registerFactory<JobDataSource>(
@@ -22,4 +20,6 @@ void injectDependencies() {
   locator.registerFactory(() => JobsBloc(locator.get()));
 }
 
-T inject<T>([String name]) => GetIt.instance.get<T>(instanceName: name);
+T inject<T extends Object>([String? name]) {
+  return GetIt.instance.get<T>(instanceName: name);
+}

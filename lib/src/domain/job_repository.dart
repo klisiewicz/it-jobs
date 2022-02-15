@@ -6,8 +6,7 @@ class JobRepository implements ListRepository<Job> {
   final JobDataSource _jobDataSource;
 
   JobRepository(JobDataSource jobDataSource)
-      : _jobDataSource = jobDataSource,
-        assert(jobDataSource != null);
+      : _jobDataSource = jobDataSource;
 
   @override
   Future<List<Job>> getAll() {

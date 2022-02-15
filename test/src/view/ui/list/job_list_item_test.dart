@@ -14,8 +14,8 @@ void main() {
       await _makeTestableJobList(tester, androidDeveloper);
 
       // Then:
-      expect(find.text(androidDeveloper.title), findsOneWidget);
-      expect(find.text(androidDeveloper.company.name), findsOneWidget);
+      expect(find.text(androidDeveloper.title!), findsOneWidget);
+      expect(find.text(androidDeveloper.company!.name!), findsOneWidget);
     },
   );
 
@@ -44,7 +44,7 @@ void main() {
 Future<void> _makeTestableJobList(
   WidgetTester tester,
   Job job, {
-  VoidCallback onJobSelected,
+  VoidCallback? onJobSelected,
 }) async {
   return tester.pumpWidget(
     makeTestableWidget(

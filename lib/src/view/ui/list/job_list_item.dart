@@ -3,20 +3,19 @@ import 'package:it_jobs/src/domain/entity/job.dart';
 
 class JobListItem extends StatelessWidget {
   final Job job;
-  final VoidCallback onJobSelected;
+  final VoidCallback? onJobSelected;
 
   const JobListItem(
     this.job, {
-    Key key,
+    Key? key,
     this.onJobSelected,
-  })  : assert(job != null),
-        super(key: key);
+  })  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(job.title),
-      subtitle: Text(job.company.name),
+      title: Text(job.title!),
+      subtitle: Text(job.company!.name!),
       onTap: onJobSelected,
     );
   }
